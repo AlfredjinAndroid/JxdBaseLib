@@ -2,4 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.jxd.base">
 
+
+    <application>
+        <provider
+            android:name=".storage.StorageInitProvider"
+            android:authorities="storageInit"
+            android:enabled="true"
+            android:exported="false"/>
+    </application>
+
 </manifest>

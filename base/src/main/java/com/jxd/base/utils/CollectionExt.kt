@@ -39,7 +39,7 @@ fun <T, E : T> List<T>.addAll(elements: Collection<E>): List<T> {
  * 将当前集合中的旧值[old]替换为新的值[new]
  * 如果集合不存在[old]，则直接添加到集合中
  */
-inline fun <T> List<T>.replace(old: T, new: T): List<T> {
+fun <T> List<T>.replace(old: T, new: T): List<T> {
     val result = if (this is MutableList<T>) this else toMutableList()
     val index = result.indexOf(old)
     if (index < 0) { // 不存在旧的
@@ -48,4 +48,17 @@ inline fun <T> List<T>.replace(old: T, new: T): List<T> {
         result[index] = new
     }
     return result
+}
+
+
+/**
+ * 为Long类型的序列集合扩展求和计算
+ * 仿照[Iterable.sumBy]
+ */
+inline fun <T> Sequence<T>.sumBy(selector: (T) -> Long): Long {
+    var sum: Long = 0
+    for (element in this) {
+        sum += selector(element)
+    }
+    return sum
 }
